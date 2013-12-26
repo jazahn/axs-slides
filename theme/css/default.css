@@ -463,6 +463,14 @@ h1, h2, h3 {
 }
 
 /* line 280, ../scss/default.scss */
+h1 {
+  font-size: 55px;
+  line-height: 55px;
+  letter-spacing: -3px;
+  color: #464646;
+}
+
+/* line 280, ../scss/default.scss */
 h2 {
   font-size: 45px;
   line-height: 45px;
@@ -1211,8 +1219,8 @@ article.smaller q:before, article.smaller q:after {
 /* ===== SLIDE CONTENT ===== */
 /* line 803, ../scss/default.scss */
 .logoslide img {
-  width: 383px;
-  height: 92px;
+  width: 389px;
+  height: 62px;
 }
 
 /* line 809, ../scss/default.scss */
@@ -1260,8 +1268,8 @@ article.smaller q:before, article.smaller q:after {
 
 /* line 848, ../scss/default.scss */
 aside.gdbar {
-  height: 97px;
-  width: 215px;
+  height: 87px;
+  width: 450px;
   position: absolute;
   left: -1px;
   top: 125px;
@@ -1315,8 +1323,8 @@ aside.gdbar.bottom {
 }
 /* line 877, ../scss/default.scss */
 aside.gdbar img {
-  width: 85px;
-  height: 85px;
+  width: 389px;
+  height: 62px;
   position: absolute;
   right: 0;
   margin: 8px 15px;
