@@ -1,0 +1,282 @@
+
+<!-- Copyright (c) 2011 Google Inc.
+       *
+       * Licensed under the Apache License, Version 2.0 (the "License");
+       * you may not use this file except in compliance with the License.
+       * You may obtain a copy of the License at
+       *
+       *     http://www.apache.org/licenses/LICENSE-2.0
+       *
+       * Unless required by applicable law or agreed to in writing, software
+       * distributed under the License is distributed on an "AS IS" BASIS,
+       * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       * See the License for the specific language governing permissions and
+       * limitations under the License.
+       *
+       * Author: Dominic Mazzoni and Rachel Shearer
+       *
+       *
+       *
+-->
+
+<!doctype html>
+<html>
+<head>
+  <!-- Accessible version -->
+  <title>lunch Attack</title>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Cherry+Cream+Soda" />
+  <link rel="stylesheet" type="text/css" href="lunch_styles.css" />
+  <script src="js/events.js"></script>
+  <script>
+    var nameMap = {
+        'pinocchio': 'Pinocchio\'s',
+        'oggi': 'Oggi\'s',
+        'chutney': 'Chutney\'s',
+        'border': 'Border Cafe',
+        'johnharvard': 'John Harvard\'s',
+        'firstprinter': 'First Printer',
+        'gutman': 'Gutman Cafeteria		',
+        'subway': 'Subway'
+    };
+    var starNames = {
+      0: 'No rating',
+      1: '1 star: Ew, Gross!',
+      2: '2 stars: Meh.',
+      3: '3 stars: Ok, sure.',
+      4: '4 stars: Awesome!',
+      5: '5 stars: NOM NOM NOM!'
+    };
+    var dialogFocusListener = null;
+    var dialogFocus = null;
+
+    var prevfocus = document.body;
+    function opendialog() {
+      prevfocus = document.activeElement || document.body;
+      document.getElementById('shade').style.height =
+          (document.body.offsetHeight + 30) + 'px';
+      document.getElementById('shade').style.display = 'block';
+      document.getElementById('dialog').style.display = 'block';
+      document.getElementById('stars').focus();
+
+      dialogFocus = document.activeElement;
+      dialogFocusListener = function(e) {
+        var node = e.target ? e.target : e.srcElement;
+        var isInDialog = false;
+        while (node) {
+          if (node == document.getElementById('dialog')) {
+            isInDialog = true;
+            break;
+          }
+          node = node.parentElement;
+        }
+        if (!isInDialog) {
+          dialogFocus.focus();
+        }
+        dialogFocus = document.activeElement;
+        return false;
+      };
+      callAddEventListener(document, 'focus', dialogFocusListener);
+    }
+    function vote() {
+      document.getElementById('update').textContent = "Saving...";
+      setTimeout("closedialog()", 1500);
+    }
+
+    function closedialog() {
+      if (dialogFocusListener) {
+        callRemoveEventListener(document, 'focus', dialogFocusListener);
+        dialogFocusListener = null;
+      }
+      document.getElementById('dialog').style.display = 'none';
+      document.getElementById('shade').style.display = 'none';
+
+      // VoiceOver can get a little confused after you remove the focused element
+      // out from under it. To ensure it works correctly, all you need to do is
+      // set focus to the document element first and then to the element
+      // you want to focus.
+      document.body.focus();
+      prevfocus.focus();
+      document.getElementById('update').textContent = "";
+    }
+
+    callAddEventListener(document, 'keydown', function(e) {
+      if (e.keyCode == 27) {
+        if (document.getElementById('dialog').style.display != 'none') {
+          closedialog();
+        }
+      }
+      return false;
+    }, false);
+
+    function rate(food) {
+      var foodTitle = nameMap[food];
+      document.getElementById('dialog_title').innerText = foodTitle;
+      document.getElementById('dialog_icon').style['background-image'] =
+          'url("images/' + food + '_large.jpg")';
+      setstars(0);
+      opendialog();
+    }
+
+    var current_stars = 0;
+
+    function setstars(stars) {
+      current_stars = stars;
+      for (var i = 1; i <= 5; i++) {
+        var elem = document.getElementById('star' + i);
+        if (stars >= i) {
+          elem.className = 'star_full';
+        } else {
+          elem.className = 'star_empty';
+        }
+      }
+      var cancel = document.getElementById('star0');
+      if (stars > 0) {
+        cancel.style.visibility = 'visible';
+      } else {
+        cancel.style.visibility = 'hidden';
+      }
+      var caption = document.getElementById('star_caption');
+      caption.innerText = starNames[stars];
+      var stars_elem = document.getElementById('stars');
+      stars_elem.setAttribute('aria-valuenow', stars);
+      stars_elem.setAttribute('aria-valuetext', starNames[stars]);
+    }
+
+    function starkey(event) {
+      if (event.keyCode == 37 && current_stars > 0) {
+        setstars(current_stars - 1);
+        return true;
+      } else if (event.keyCode == 39 && current_stars < 5) {
+        setstars(current_stars + 1);
+        return true;
+      }
+      return false;
+    }
+
+    function initstar(star) {
+      var name = 'star' + star;
+      var elem = document.getElementById(name);
+      callAddEventListener(elem, 'click', function() {
+        setstars(star);
+      });
+    }
+
+    function initstars() {
+      for (var i = 0; i <= 5; i++) {
+        initstar(i);
+      }
+      var stars = document.getElementById('stars');
+      callAddEventListener(stars, 'keydown', function(event) {
+        starkey(event);
+      });
+    }
+
+    function load() {
+      initstars();
+    }
+  </script>
+</head>
+<body onload="load()">
+
+<div class="topbar">
+</div>
+
+<div class="main">
+
+<div>
+  <a href="#" class="topbar_icon">Sign Up</a>
+  <a href="#" class="topbar_icon">About</a>
+  <a href="#" class="topbar_icon">Contact Us</a>
+</div>
+
+<h1>Rate That Lunch</h1>
+
+<div class="content">
+
+<p>Please rate this lunch!</p>
+
+<div id="shade" style="display:none"></div>
+<div class="dialog_container">
+<div class="dialog" id="dialog" role="dialog" aria-label="Rating Dialog"
+     style="display:none">
+  <div class="lunch_image_dialog" id="dialog_icon"></div>
+  <h2 id="dialog_title">Dialog Title</h2>
+  <p>Please rate this lunch!</p>
+  <div>
+    <div id="stars" class="star_rating" tabindex="0" role="slider"
+         aria-valuemin="0" aria-valuemax="5" aria-valuenow="3">
+      <span id="star0" class="star_cancel"></span>
+      <span id="star1" class="star_full"></span>
+      <span id="star2" class="star_full"></span>
+      <span id="star3" class="star_full"></span>
+      <span id="star4" class="star_empty"></span>
+      <span id="star5" class="star_empty"></span>
+      <span id="star_caption" class="star_caption">No rating</span>
+    </div>
+    <div id="update" aria-live="polite"></div>
+  </div>
+  <div>
+    <button id="closebutton" onclick="vote()">Vote</button>
+    <button id="closebutton" onclick="closedialog()">Cancel</button>
+  </div>
+</div>
+</div>
+
+<ul class="lunch_results">
+	<li class="lunch_result">
+		<div class="lunch_image" style="background-image:url('images/pinocchio_small.gif')"></div>
+		<div class="lunch_link">
+			<a role="button" href="javascript:rate('pinocchio')">Pinocchio's</a><br>
+			<span class="lunch_count">7,965 ratings</span>
+		</div>
+
+	<li class="lunch_result">
+	  <div class="lunch_image" style="background-image:url('images/oggi_small.png')"></div>
+	  <div class="lunch_link">
+	    <a role="button" href="javascript:rate('oggi')">Oggi's'</a><br>
+	    <span class="lunch_count">6,454 ratings</span>
+	  </div>
+	<li class="lunch_result">
+	  <div class="lunch_image" style="background-image:url('images/chutney_large.png')"></div>
+	  <div class="lunch_link">
+	    <a role="button" href="javascript:rate('chutney')">Chutney's</a><br>
+	    <span class="lunch_count">3,830 ratings</span>
+	  </div>
+	<li class="lunch_result">
+	  <div class="lunch_image" style="background-image:url('images/border_large.jpeg')"></div>
+	  <div class="lunch_link">
+	    <a role="button" href="javascript:rate('border')">Border Cafe</a><br>
+	    <span class="lunch_count">3,671 ratings</span>
+	  </div>
+	<li class="lunch_result">
+	  <div class="lunch_image" style="background-image:url('images/johnharvard_large.jpg')"></div>
+	  <div class="lunch_link">
+	    <a role="button" href="javascript:rate('johnharvard')">John Harvard's</a><br>
+	    <span class="lunch_count">3,576 ratings</span>
+	  </div>
+	<li class="lunch_result">
+	  <div class="lunch_image" style="background-image:url('images/firstprinter_large.jpg')"></div>
+	  <div class="lunch_link">
+	    <a role="button" href="javascript:rate('firstprinter')">First Printer</a><br>
+	    <span class="lunch_count">2,199 ratings</span>
+	  </div>
+	<li class="lunch_result">
+	  <div class="lunch_image" style="background-image:url('images/gutman_small.jpg')"></div>
+	  <div class="lunch_link">
+	    <a role="button" href="javascript:rate('gutman')">Gutman</a><br>
+	    <span class="lunch_count">1,894 ratings</span>
+	  </div>
+	<li class="lunch_result">
+	  <div class="lunch_image" style="background-image:url('images/subway_large.jpeg')"></div>
+	  <div class="lunch_link">
+	    <a role="button" href="javascript:rate('subway')">Subway</a><br>
+	    <span class="lunch_count">752 ratings</span>
+	  </div>
+</ul>
+
+</div>
+
+</div>
+
+</body>
+</html>
