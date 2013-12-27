@@ -290,6 +290,112 @@ URL: https://code.google.com/p/io-2012-slides
       <iframe data-src="lunch_ax.html"></iframe>
     </article>
   </slide>
+  
+  <slide class="segue dark nobackground">
+    <hgroup class="auto-fadein">
+      <h2>Coding accessible HTML5</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Accessible HTML5 Overview</h2>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Use clean HTML and standard tags whenever possible</li>
+        <li>Manage focus</li>
+        <li>Add key handlers</li>
+        <li>Add ARIA for screen readers</li>
+      </ul>
+    </article>
+  </slide>
+  
+  <slide>
+    <hgroup>
+      <h2>Use clean HTML and standard tags</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Use CSS for layout, make sure DOM is in logical order</li>
+        <li>Don't use generic div or span when there's another HTML tag that's more semantically appropriate!<br><br>
+			<pre class="prettyprint" data-lang="html">
+				&lt;span onclick=""&gt;...  ⇒  &lt;a href=""&gt;...
+				&lt;div onclick=""&gt;...   ⇒  &lt;button onclick=""&gt;...</pre>
+		</li>
+        <li>Label images and form controls<br><br>
+			<pre class="prettyprint" data-lang="html">
+				&lt;img src="chart.png" alt="(description)"&gt;
+
+				&lt;label for="firstname"&gt;First name:&lt;label&gt;
+				&lt;input type="text" id="firstname"/&gt;</pre>
+		</li>
+      </ul>
+    </article>
+  </slide>
+  
+  <slide>
+    <hgroup>
+      <h2>Managing Focus</h2>
+    </hgroup>
+    <article>
+      <ul>
+		<li>Make custom interactive elements focusable with <code>tabindex:</code><br><br>
+			<pre class="prettyprint" data-lang="html">
+				&lt;!-- Natural tab order --&gt;
+				&lt;div onclick="" tabindex="0"&gt;Clicky 1&lt;/div&gt;
+
+				&lt;!-- Custom tab order --&gt;
+				&lt;div onclick="" tabindex="7"&gt;Clicky 2&lt;/div&gt;
+
+				&lt;!-- Focusable but not in tab order --&gt;
+				&lt;div onclick="" tabindex="-1"&gt;Clicky 3&lt;/div&gt;
+			</pre>
+		</li>
+		<li>Proactively place focus with <code>element.focus()</code> to create an effcient workflow.</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Add key handlers</h2>
+    </hgroup>
+    <article>
+		<p>Custom controls should respond to keys like Enter, Space, Arrows, Escape, etc. as appropriate</p>
+		<pre class="prettyprint" data-lang="html/javascript">
+			&lt;div id="reply_icon"
+			     tabindex="0"
+			     onclick="reply()"
+			     onkeydown="return onReplyKeydown(event)"&gt;Reply&lt;/div&gt;
+
+			&lt;script&gt;
+			  function onReplyKeydown(event) {
+			    if (event.keyCode == 32 || event.keyCode == 13)  // Space / Enter
+			      reply();
+			  }
+			&lt;/script&gt;</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Add ARIA for screen readers</h2>
+    </hgroup>
+    <article>
+		<li>ARIA attributes provide semantic information to screen readers that is normally conveyed visually</li>
+		<li>Use the ARIA <code>role</code> attribute to indicate that a generic tag is playing the role of a standard widget, like a button:<br><br>
+			<pre class="prettyprint" data-lang="html">
+				&lt;div tabindex="0" role="button"&gt;Send&lt;/div&gt;</pre>
+		</li>
+		<li>Use ARIA states and properties to add dynamic information about the current state of an element<br><br>
+			<pre class="prettyprint" data-lang="html">
+				&lt;div tabindex="0" role="checkbox" aria-checked="true"&gt;
+				  Include attachments
+				&lt;/div&gt;</pre>
+		</li>
+    </article>
+  </slide>
 
   <slide>
     <hgroup>
