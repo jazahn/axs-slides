@@ -6,9 +6,8 @@ define(['jquery.min'], function(){
 			var dst = $('#' + basename + '_embed');
 			var html = src.text();
 			var scripts = /<script>([^<]*)<\/script>/i.exec(html);
-			console.log('html: '+html);
-			
-			console.log('scripts: ' + scripts);
+			//console.log('html: '+html);
+			//console.log('scripts: ' + scripts);
 			if (scripts) {
 				var scriptCode = scripts[1];
 				html = html.replace(/<script>[^<]*<\/script>/, '');
@@ -27,7 +26,6 @@ define(['jquery.min'], function(){
 
 		// Sync a contenteditable containing html with a div containing the result.
 		manageLiveCoding: function(basename) {
-			
 			var src = $('#' + basename + '_src');
 			var that = this;
 			this.refreshLiveCoding(null, basename);
@@ -39,11 +37,6 @@ define(['jquery.min'], function(){
 				}, 100);
 				e.stopPropagation();
 				//return false;
-			});
-			src.bind('blur', function(e) {
-				window.setTimeout(function() {
-					prettyPrint();
-				}, 0);
 			});
 			
 		}	
