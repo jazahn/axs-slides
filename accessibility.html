@@ -21,6 +21,7 @@ URL: https://code.google.com/p/io-2012-slides
   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
   <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+  
 </head>
 <body style="opacity: 0">
 
@@ -397,140 +398,49 @@ URL: https://code.google.com/p/io-2012-slides
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Slide with Bullets that Build</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article>
-      <p>A list where items build:</p>
-      <ul class="build">
-        <li>Pressing 'h' highlights code snippets</li>
-        <li>Pressing 'p' toggles speaker notes (if they're on the current slide)</li>
-        <li>Pressing 'f' toggles fullscreen viewing</li>
-        <li>Pressing 'w' toggles widescreen</li>
-        <li>Pressing 'o' toggles overview mode</li>
-        <li>Pressing 'ESC' toggles off these goodies</li>
-      </ul>
-      <p>Another list, but items fade as they build:</p>
-      <ul class="build fade">
-        <li>Hover over me!</li>
-        <li>Hover over me!</li>
-        <li>Hover over me!</li>
-      </ul>
-    </article>
-  </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Slide with (Smaller Font)</h2>
-    </hgroup>
-    <article class="smaller">
-      <ul>
-        <li>All <a href="http://google.com">links</a> open in new tabs.</li>
-        <li>To change that this, add <code>target="_self"</code> to the link.</li>
-      </ul>
-    </article>
-  </slide>
+	<slide>
+		<hgroup>
+			<h2>Something</h2>
+		</hgroup>
+		<article>
+          <style>
+            .custombutton {
+              cursor: pointer;
+              border: 1px solid #000;
+              margin: 10px;
+              padding: 10px;
+              display: inline-block;
+              background: -webkit-gradient(
+                  linear, left top, left bottom, from(#fff), to(#ccc));
+            }
+          </style>
+          <h3>
+            Example 1: Custom button
+          </h3>
 
-  <slide hidden>
-    Hidden slides are left out of the presentation.
-  </slide>
+<pre id="custombutton_src" class="prettyprint" data-lang="html" contenteditable="true">
+	&lt;p&gt;
+    Click on this button:
+  &lt;/p&gt;
+  &lt;div class="custombutton"
+       onclick="alert('sent!')"&gt;
+    Send
+  &lt;/div&gt;</pre>
+	
+<div id="custombutton_embed" class="righthalf_embed" style="width:100px;height:100px"></div>
+<button class="refresh" onclick="return refreshLiveCoding(event, 'custombutton')" onkeydown="return onKeyDown(event)">
+            Refresh
+</button>
 
-  <slide>
-    <hgroup>
-      <h2>Code Slide (with Subtitle Placeholder)</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article>
-      <p>Press 'h' to highlight important sections of code (wrapped in <code>&lt;b&gt;</code>).</p>
-      <pre class="prettyprint" data-lang="javascript">
-&lt;script type='text/javascript'&gt;
-  // Say hello world until the user starts questioning
-  // the meaningfulness of their existence.
-  function helloWorld(world) {
-    <b>for (var i = 42; --i &gt;= 0;) {
-      alert('Hello ' + String(world));
-    }</b>
-  }
-&lt;/script&gt;
-</pre>
-    </article>
-  </slide>
+	<script>
+	require(['live-content'], function(lc){
+		lc.manageLiveCoding('custombutton');		
+	});
+	</script>
 
-  <slide>
-    <hgroup>
-      <h2>Code Slide (Smaller Font)</h2>
-    </hgroup>
-    <article class="smaller">
-      <pre class="prettyprint" data-lang="javascript">
-// Say hello world until the user starts questioning
-// the meaningfulness of their existence.
-function helloWorld(world) {
-  for (var i = 42; --i &gt;= 0;) {
-    alert('Hello ' + String(world));
-  }
-}
-</pre>
-<pre class="prettyprint" data-lang="css">
-&lt;style&gt;
-  p { color: pink }
-  b { color: blue }
-&lt;/style&gt;
-</pre>
-<pre class="prettyprint" data-lang="html">
-&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-  &lt;title>My Awesome Page&lt;/title>
-&lt;/head>
-&lt;body>
-  &lt;p&gt;Hello world&lt;/p&gt;
-&lt;body>
-&lt;/html>
-</pre>
-    </article>
-  </slide>
-
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>Point I wanted to make #1</li>
-          <li>Point I wanted to make #2</li>
-          <li>Point I wanted to make #3</li>
-          <li>Example <a href="#">link</a> in notes.</li>
-        </ul>
-        <p><b>Remember to say this tag line!</b></p>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>Slide with Speaker Notes</h2>
-    </hgroup>
-    <article>
-      <p>Press 'p' to toggle speaker notes.</p>
-    </article>
-  </slide>
-
-  <slide>
-    <aside class="note">
-      <section>
-        <ul>
-          <li>See this amazing link: <a href="http://www.google.com">link</a>.</li>
-        </ul>
-        <p><b>Remember to say this tag line!</b></p>
-      </section>
-    </aside>
-    <hgroup>
-      <h2>Presenter Mode</h2>
-    </hgroup>
-    <article>
-      <p>Add <code><a href="?presentme=true" target="_self">?presentme=true</a></code> to the URL to enabled presenter mode.
-      This setting is sticky, meaning refreshing the page will persist presenter
-      mode.</p>
-      <p>Hit <code><a href="?presentme=false" target="_self">?presentme=false</a></code> to disable presenter mode.</p>
-    </article>
-  </slide>
+		</article>
+	</slide>
 
   <slide>
     <hgroup>
