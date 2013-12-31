@@ -45,6 +45,12 @@ URL: https://code.google.com/p/io-2012-slides
 	background: -webkit-gradient(
 		linear, left top, left bottom, from(#222), to(#aaa));
 }
+#status {
+	border: 1px solid #696969;
+	margin: 10px;
+	padding: 10px;
+}
+</style>
   </style>
 </head>
 <body style="opacity: 0">
@@ -484,6 +490,46 @@ function toggle() {
 		lc.manageLiveCoding('customtoggle');		
 	});
 	</script>
+
+		</article>
+	</slide>
+
+	<slide>
+		<hgroup>
+			<h2>Example 3: Status Indicator</h2>
+		</hgroup>
+		<article>
+
+<pre id="status_src" class="prettyprint livecontent-src" data-lang="html" contenteditable="true">
+&lt;p&gt;
+  Click to begin calculation:
+&lt;/p&gt;
+&lt;button onclick="calculate()"&gt;
+  Calculate
+&lt;/button&gt;
+
+&lt;div id="status"&gt;
+  Status goes here.
+&lt;/div&gt;</pre>
+
+	<div class="livecontent-embed-container" style="">
+		<div id="status_embed" class="livecontent-embed" style=""></div>
+		<button class="refresh" onclick="return refreshLiveCoding(event, 'status')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+	</div>
+	<script>
+	require(['live-content', 'jquery.min'], function(lc){
+		lc.manageLiveCoding('status');
+	});
+	</script>
+	<script>
+	function calculate() {
+		$('#status').text('Calculating');
+		window.setTimeout(function() {
+			$('#status').text('Finished');
+		}, 3000);
+	}
+	</script>
+
 
 		</article>
 	</slide>

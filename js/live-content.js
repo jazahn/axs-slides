@@ -1,5 +1,4 @@
 define(['jquery.min'], function(){
-	console.log('live-content');
 	return {
 		refreshLiveCoding: function(e, basename) {
 			var src = $('#' + basename + '_src');
