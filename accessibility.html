@@ -21,7 +21,18 @@ URL: https://code.google.com/p/io-2012-slides
   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
   <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
-  
+  <style>
+.livecontent-src {
+	width: 50%;
+	float: left;
+}
+.livecontent-embed {
+	height: 400px;
+}
+.livecontent-embed-container {
+	float: left;
+}
+  </style>
 </head>
 <body style="opacity: 0">
 
@@ -401,7 +412,7 @@ URL: https://code.google.com/p/io-2012-slides
 
 	<slide>
 		<hgroup>
-			<h2>Something</h2>
+			<h2>Example 1: Custom Button</h2>
 		</hgroup>
 		<article>
           <style>
@@ -415,24 +426,20 @@ URL: https://code.google.com/p/io-2012-slides
                   linear, left top, left bottom, from(#fff), to(#ccc));
             }
           </style>
-          <h3>
-            Example 1: Custom button
-          </h3>
 
-<pre id="custombutton_src" class="prettyprint" data-lang="html" contenteditable="true">
-	&lt;p&gt;
-    Click on this button:
-  &lt;/p&gt;
-  &lt;div class="custombutton"
-       onclick="alert('sent!')"&gt;
-    Send
-  &lt;/div&gt;</pre>
-	
-<div id="custombutton_embed" class="righthalf_embed" style="width:100px;height:100px"></div>
-<button class="refresh" onclick="return refreshLiveCoding(event, 'custombutton')" onkeydown="return onKeyDown(event)">
-            Refresh
-</button>
+<pre id="custombutton_src" class="prettyprint livecontent-src" data-lang="html" contenteditable="true">
+&lt;p&gt;
+Click on this button:
+&lt;/p&gt;
+&lt;div class="custombutton"
+onclick="alert('sent!')"&gt;
+Send
+&lt;/div&gt;</pre>
 
+	<div class="livecontent-embed-container" style="">
+		<div id="custombutton_embed" class="livecontent-embed" style=""></div>
+		<button class="refresh" onclick="return refreshLiveCoding(event, 'custombutton')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+	</div>
 	<script>
 	require(['live-content'], function(lc){
 		lc.manageLiveCoding('custombutton');		
