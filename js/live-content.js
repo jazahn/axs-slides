@@ -20,6 +20,9 @@ define(['jquery.min'], function(){
 				e.preventDefault();
 				e.stopPropagation();
 			}
+			try {
+				initstars();
+			} catch(e) {}
 			return false;
 		},
 
