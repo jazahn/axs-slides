@@ -85,6 +85,18 @@ URL: https://code.google.com/p/io-2012-slides
 	color: #696969;
 	font-size: 20px;
 }
+.dialog {
+	display: none;
+	border: 1px solid #000;
+	border-radius: 10px;
+	margin: 15px;
+	padding: 15px;
+	background: #fff;
+	box-shadow: 6px 6px 8px #696969;
+}
+.dialog p {
+	font-size: 18px;
+}
 	</style>
 </head>
 <body style="opacity: 0">
@@ -667,6 +679,70 @@ function toggle() {
 			initstar(stars, i);
 		}
 	}
+	</script>
+
+		</article>
+	</slide>
+
+	<slide>
+		<hgroup>
+			<h2>Example 5: Pop-up Dialog</h2>
+		</hgroup>
+		<article>
+
+<pre id="popup_src" class="prettyprint livecontent-src" data-lang="html" contenteditable="true">
+&lt;script&gt;
+function confirm() {
+  $('#modal_dialog').css('display', 'block');
+}
+&lt;/script&gt;
+
+&lt;button onclick="confirm()"&gt;
+  Finish Brown Bag
+&lt;/button&gt;
+
+&lt;div id="modal_dialog" class="dialog"&gt;
+  &lt;p&gt;Are you sure you don't want to hear more?&lt;/p&gt;
+  &lt;button id="ok"&gt;End it&lt;/button&gt;
+  &lt;button id="cancel"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</pre>
+
+	<div class="livecontent-embed-container" style="">
+		<div id="popup_embed" class="livecontent-embed" style=""></div>
+		<button class="refresh" onclick="return refreshLiveCoding(event, 'popup')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+	</div>
+	<script>
+	require(['live-content', 'jquery.min'], function(lc){
+		lc.manageLiveCoding('popup');
+		var lastFocus = $('#ok');
+		  var listener = function(e) {
+		    window.setTimeout(function() {
+		      if (e.target != $('#ok') &&
+		          e.target != $('#cancel')) {
+		        lastFocus.focus();
+		      } else {
+		        lastFocus = e.target;
+		      }
+		    }, 0);
+		  };
+		  $(document).bind(
+		      'focus', listener);
+		  $('#ok').bind(
+		      'click', function(e) {
+		        $('#modal_dialog').css('display', 'none');
+		        $(document).unbind(
+		            'focus');
+		      });
+		  $('#cancel').bind(
+		      'click', function(e) {
+		        $('#modal_dialog').css('display', 'none');
+		        $(document).unbind(
+		            'focus');
+		      });
+	});
+	</script>
+	<script>
+
 	</script>
 
 		</article>
