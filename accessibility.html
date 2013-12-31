@@ -21,7 +21,7 @@ URL: https://code.google.com/p/io-2012-slides
   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
   <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
-  <style>
+	<style>
 .livecontent-src {
 	width: 50%;
 	float: left;
@@ -50,8 +50,42 @@ URL: https://code.google.com/p/io-2012-slides
 	margin: 10px;
 	padding: 10px;
 }
-</style>
-  </style>
+.star_rating {
+	display: inline-block;
+	padding: 2px;
+	height: 24px;
+}
+
+.star_cancel {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(images/star_cancel.gif);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.star_full {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(images/star1.gif);
+}
+
+.star_empty {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: url(images/star0.gif);
+}
+.star_caption {
+	margin-left: 1em;
+	display: inline-block;
+	width: 4em;
+	color: #696969;
+	font-size: 20px;
+}
+	</style>
 </head>
 <body style="opacity: 0">
 
@@ -517,7 +551,7 @@ function toggle() {
 		<button class="refresh" onclick="return refreshLiveCoding(event, 'status')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
 	</div>
 	<script>
-	require(['live-content', 'jquery.min'], function(lc){
+	require(['live-content'], function(lc){
 		lc.manageLiveCoding('status');
 	});
 	</script>
@@ -530,189 +564,113 @@ function toggle() {
 	}
 	</script>
 
-
 		</article>
 	</slide>
 	
-  <slide>
-    <hgroup>
-      <h2>Slide with Image</h2>
-    </hgroup>
-    <article>
-      <img src="images/chart.png" class="reflect" alt="Description" title="Description">
-      <footer class="source">source: place source info here</footer>
-    </article>
-  </slide>
+	<slide>
+		<hgroup>
+			<h2>Example 4: Star Rating Gadget</h2>
+		</hgroup>
+		<article>
 
-  <slide>
-    <hgroup>
-      <h2>Slide with Image (Centered horz/vert)</h2>
-    </hgroup>
-    <article class="flexbox vcenter">
-      <img src="images/barchart.png" alt="Description" title="Description">
-      <footer class="source">source: place source info here</footer>
-    </article>
-  </slide>
+<pre id="star_src" class="prettyprint livecontent-src" data-lang="html" contenteditable="true">
+&lt;p&gt;
+  Rate from 1 to 5 stars:
+&lt;/p&gt;
+&lt;div id="stars" class="star_rating"&gt;
+  &lt;span class="star_cancel"&gt;&lt;/span&gt;
+  &lt;span class="star_full"&gt;&lt;/span&gt;
+  &lt;span class="star_full"&gt;&lt;/span&gt;
+  &lt;span class="star_full"&gt;&lt;/span&gt;
+  &lt;span class="star_empty"&gt;&lt;/span&gt;
+  &lt;span class="star_empty"&gt;&lt;/span&gt;
+  &lt;span class="star_caption"&gt;
+    3 stars
+  &lt;/span&gt;
+&lt;/div&gt;</pre>
 
-  <slide>
-    <hgroup>
-      <h2>Table Option A</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article>
-      <table>
-        <tr>
-          <th></th><th>Column 1</th><th>Column 2</th><th>Column 3</th><th>Column 4</th>
-        </tr>
-        <tr>
-          <td>Row 1</td><td>placeholder</td><td class="highlight">placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 2</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 3</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 4</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 5</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-      </table>
-    </article>
-  </slide>
+	<div class="livecontent-embed-container" style="">
+		<div id="star_embed" class="livecontent-embed" style=""></div>
+		<button class="refresh" onclick="return refreshLiveCoding(event, 'star')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+	</div>
+	<script>
+	require(['live-content'], function(lc){
+		lc.manageLiveCoding('star');
+		//initstars();
+	});
+	</script>
+	<script>
+    // Star rating gadget
+    var starNames = {
+      0: 'No stars',
+      1: '1 star',
+      2: '2 stars',
+      3: '3 stars',
+      4: '4 stars',
+      5: '5 stars'
+    };
 
-  <slide>
-    <hgroup>
-      <h2>Table Option A (Smaller Text)</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article class="smaller">
-      <table>
-        <tr>
-          <th></th><th>Column 1</th><th>Column 2</th><th>Column 3</th><th>Column 4</th>
-        </tr>
-        <tr>
-          <td>Row 1</td><td>placeholder</td><td class="highlight">placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 2</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 3</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 4</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <td>Row 5</td><td>placeholder</td><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-      </table>
-    </article>
-  </slide>
+    function setstars(stars) {
+      var elems = $('#stars').children();
+      currentStars = stars;
+      for (var i = 1; i <= 5; i++) {
+        var elem = $(elems[i]);
+        if (stars >= i) {
+			elem.removeClass('star_empty');
+          	elem.addClass('star_full');
+        } else {
+            elem.removeClass('star_full');
+            elem.addClass('star_empty');
+        }
+      }
+      var cancel = $(elems[0]);
+      if (stars > 0) {
+        cancel.css('visibility', 'visible');
+      } else {
+        cancel.css('visibility', 'hidden');
+      }
+      var caption = $(elems[6]);
+      caption.text(starNames[stars]);
+      var stars_elem = $('#stars');
+      stars_elem.attr('aria-valuenow', stars);
+      stars_elem.attr('aria-valuetext', starNames[stars]);
+    }
 
-  <slide>
-    <hgroup>
-      <h2>Table Option B</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-    <article>
-      <table class="rows">
-        <tr>
-          <th>Header 1</th><td>placeholder</td><td class="highlight">placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <th>Header 2</th><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <th>Header 3</th><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <th>Header 4</th><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-        <tr>
-          <th>Header 5</th><td>placeholder</td><td>placeholder</td><td>placeholder</td>
-        </tr>
-      </table>
-    </article>
-  </slide>
+    function starkey(event) {
+      if (event.keyCode == 37) {
+        if (currentStars > 0) {
+          setstars(currentStars - 1);
+        }
+        event.stopPropagation();
+      } else if (event.keyCode == 39) {
+        if (currentStars < 5) {
+          setstars(currentStars + 1);
+        }
+        event.stopPropagation();
+      }
+      return false;
+    }
 
-  <slide>
-    <hgroup>
-      <h2>Slide Styles</h2>
-    </hgroup>
-    <article class="smaller">
-      <div class="columns-2">
-        <ul>
-          <li class="red">class="red"</li>
-          <li class="red2">class="red2"</li>
-          <li class="red3">class="red3"</li>
-          <li class="blue">class="blue"</li>
-          <li class="blue2">class="blue2"</li>
-          <li class="blue3">class="blue3"</li>
-          <li class="green">class="green"</li>
-          <li class="green2">class="green2"</li>
-        </ul>
-        <ul>
-          <li class="green3">class="green3"</li>
-          <li class="yellow">class="yellow"</li>
-          <li class="yellow2">class="yellow2"</li>
-          <li class="yellow3">class="yellow3"</li>
-          <li class="gray">class="gray"</li>
-          <li class="gray2">class="gray2"</li>
-          <li class="gray3">class="gray3"</li>
-          <li class="gray4">class="gray4"</li>
-        </ul>
-      </div>
-      <div class="centered" style="margin-top:2em">
-        I am centered text with a <button>Button</button> and <button disabled>Disabled</button> button.
-      </div>
-    </article>
-  </slide>
+	function initstar(stars, star) {
+		var elem = $(stars.children()[star]);
+		if(elem !== 'undefined'){
+			elem.unbind('click');
+			elem.bind('click', function() {
+				setstars(star);
+			});
+		}
+	}
 
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Segue Slide</h2>
-      <h3>Subtitle Placeholder</h3>
-    </hgroup>
-  </slide>
+	function initstars() {
+		var stars = $('#stars');
+		for(var i = 0; i <= 5; i++){
+			initstar(stars, i);
+		}
+	}
+	</script>
 
-  <slide class="fill nobackground" style="background-image: url(images/sky.jpg)">
-    <hgroup>
-      <h2 class="white">Full Image (with Optional Header)</h2>
-    </hgroup>
-    <footer class="source white">www.flickr.com/photos/25797459@N06/5438799763/</footer>
-  </slide>
-
-  <slide class="segue dark quote nobackground">
-    <aside class="gdbar right bottom"><img src="images/google_developers_icon_128.png"></aside>
-    <article class="flexbox vleft auto-fadein">
-      <q>
-        This is an example of quote text.
-      </q>
-      <div class="author">
-        Name<br>
-        Company
-      </div>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Slide with Iframe</h2>
-    </hgroup>
-    <article>
-      <iframe data-src="http://www.google.com/doodle4google/resources/history.html"></iframe>
-    </article>
-  </slide>
-
-  <slide>
-    <article>
-      <iframe data-src="http://www.google.com/doodle4google/resources/history.html"></iframe>
-    </article>
-  </slide>
+		</article>
+	</slide>
 
   <slide class="thank-you-slide segue nobackground">
     <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
