@@ -32,6 +32,19 @@ URL: https://code.google.com/p/io-2012-slides
 .livecontent-embed-container {
 	float: left;
 }
+.custombutton, .togglebutton {
+	cursor: pointer;
+	border: 1px solid #000;
+	margin: 10px;
+	padding: 10px;
+	display: inline-block;
+	background: -webkit-gradient(
+		linear, left top, left bottom, from(#fff), to(#ccc));
+}
+.toggled {
+	background: -webkit-gradient(
+		linear, left top, left bottom, from(#222), to(#aaa));
+}
   </style>
 </head>
 <body style="opacity: 0">
@@ -415,17 +428,6 @@ URL: https://code.google.com/p/io-2012-slides
 			<h2>Example 1: Custom Button</h2>
 		</hgroup>
 		<article>
-          <style>
-            .custombutton {
-              cursor: pointer;
-              border: 1px solid #000;
-              margin: 10px;
-              padding: 10px;
-              display: inline-block;
-              background: -webkit-gradient(
-                  linear, left top, left bottom, from(#fff), to(#ccc));
-            }
-          </style>
 
 <pre id="custombutton_src" class="prettyprint livecontent-src" data-lang="html" contenteditable="true">
 &lt;p&gt;
@@ -449,6 +451,43 @@ Send
 		</article>
 	</slide>
 
+	<slide>
+		<hgroup>
+			<h2>Example 2: Toggle Button</h2>
+		</hgroup>
+		<article>
+
+<pre id="customtoggle_src" class="prettyprint livecontent-src" data-lang="html" contenteditable="true">
+&lt;script&gt;
+function toggle() {
+  var b = $('#tb');
+  if (b.hasClass('toggled')) {
+    b.removeClass('toggled');
+  } else {
+    b.addClass('toggled');
+  }
+}
+&lt;/script&gt;
+
+&lt;div id="tb"
+     class="togglebutton"
+     onclick="toggle()"&gt;
+  Toggle
+&lt;/div&gt;</pre>
+
+	<div class="livecontent-embed-container" style="">
+		<div id="customtoggle_embed" class="livecontent-embed" style=""></div>
+		<button class="refresh" onclick="return refreshLiveCoding(event, 'customtoggle')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+	</div>
+	<script>
+	require(['live-content'], function(lc){
+		lc.manageLiveCoding('customtoggle');		
+	});
+	</script>
+
+		</article>
+	</slide>
+	
   <slide>
     <hgroup>
       <h2>Slide with Image</h2>
