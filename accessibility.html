@@ -121,12 +121,171 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide>
     <hgroup>
+      <h2>One way to make your application accessible</h2>
+    </hgroup>
+    <article>
+		<ul>
+			<li>Basic HTML</li>
+			<li>Simple layout</li>
+			<li>Forms-based interaction</li>
+			<li>No JavaScript</li>
+		</ul>
+    </article>
+  </slide>
+  
+  <slide>
+      <hgroup>
+        <h2>Accessibility for the static web</h2>
+      </hgroup>
+	  <article>
+          <style>
+            input {
+              margin-left: 0.5em;
+              font-size: 100%;
+            }
+            select {
+              margin-left: 0.5em;
+              font-size: 100%;
+              vertical-align: middle;
+            }
+          </style>
+          <form style="border: 1px solid #696969; padding: 1em; margin-top: 1em;">
+
+            <p>
+              Enter your name:
+              <input type="text" id="username_bad">
+            </p>
+			
+			<p>
+				<img src="images/harvard-logo.png"/>
+			</p>
+            
+			<p>
+              Choose your favorite color:
+              <select id="colorchoice_bad">
+                <option selected="">Red</option>
+                <option>Orange</option>
+                <option>Yellow</option>
+                <option>Green</option>
+                <option>Blue</option>
+                <option>Purple</option>
+                <option>Brown</option>
+                <option>Black</option>
+                <option>Gray</option>
+                <option>White</option>
+              </select>
+            </p>
+          
+            <p>
+              <input type="submit" style="width: 10em;">
+            </p>
+
+            <p>Having trouble?
+               Click <a href="http://www.google.com/">here</a> for help
+            </p>
+
+          </form>
+	  </article>
+  </slide>
+  
+  <slide>
+      <hgroup>
+        <h2>Accessibility for the static web</h2>
+      </hgroup>
+	  <article>
+          <style>
+            input {
+              margin-left: 0.5em;
+              font-size: 100%;
+            }
+            select {
+              margin-left: 0.5em;
+              font-size: 100%;
+              vertical-align: middle;
+            }
+          </style>
+		  <form style="border: 1px solid #696969; padding: 1em; margin-top: 1em;">
+
+            <p>
+              <label for="username">Enter your name:</label>
+              <input type="text" id="username">
+            </p>
+
+			<p>
+				<img src="images/harvard-logo.png" alt="Harvard University I.T. logo">
+			</p>
+
+            <p>
+              <label for="colorchoice">Choose your favorite color:</label>
+              <select id="colorchoice">
+                <option selected="">Red</option>
+                <option>Orange</option>
+                <option>Yellow</option>
+                <option>Green</option>
+                <option>Blue</option>
+                <option>Purple</option>
+                <option>Brown</option>
+                <option>Black</option>
+                <option>Gray</option>
+                <option>White</option>
+              </select>
+            </p>
+          
+            <p>
+              <input type="submit" style="width: 10em;">
+            </p>
+
+            <p>Having trouble?
+               <a href="http://www.google.com/">Click here for help</a>
+            </p>
+
+          </form>
+	  </article>
+  </slide>
+  
+  <slide>
+    <hgroup>
+      <h2>What did we have to do?</h2>
+    </hgroup>
+    <article>
+		<ul>
+			<li>Add labels to form elements</li>
+			<li>Add alt attributes to images</li>
+			<li>Make links make sense</li>
+		</ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>HTML5: A bad accessible experience</h2>
+    </hgroup>
+    <article>
+      <iframe data-src="lunch_notax.html"></iframe>
+    </article>
+  </slide>
+  
+  <slide>
+    <hgroup>
+      <h2>What Went Wrong?</h2>
+    </hgroup>
+    <article>
+		<ul>
+			<li>Poor Focus Management</li>
+			<li>No Keyboard Commands</li>
+			<li>Unusable Custom Controls</li>
+			<li>The user doesn't know when things change on the page</li>
+		</ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
       <h2>Overview</h2>
     </hgroup>
     <article>
       <ul>
         <li>Legal Responsibility</li>
-        <li>What is a great accessible experience?</li>
         <li>Coding accessible HTML5</li>
         <li>Auditing</li>
         <li>Questions and fumbling for answers</li>
@@ -147,6 +306,35 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
 		<ul class="build">
+			<li><p class="build">Who does this apply to?</p>
+				<ul class="build">
+					<li>Student Facing applications?</li>
+					<li>Everyone?</li>
+				</ul>
+			</li>
+			<li><p>Do we care?</p>
+				<ul class="build">
+					<li>Of course care</li>
+					<li>Care is a poor choice of words...</li>
+					<li>Priority?</li>
+				</ul>
+			</li>
+			<li><p>An opportunity?</p>
+				<ul class="build">
+					<li>Good practices</li>
+					<li>Communication</li>
+				</ul>
+			</li>
+		</ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Section 508</h2>
+    </hgroup>
+    <article>
+		<ul class="build">
 			<li>(a) alt attributes</li>
 			<li>(b) subtitles</li>
 			<li>(c) color</li>
@@ -158,7 +346,7 @@ URL: https://code.google.com/p/io-2012-slides
 		</ul>
     </article>
   </slide>
-
+  
   <slide>
     <hgroup>
       <h2>Section 508</h2>
@@ -203,168 +391,6 @@ URL: https://code.google.com/p/io-2012-slides
 				</ul>
 			</li>
 		</ul>
-    </article>
-  </slide>
-
-  <slide class="segue dark nobackground">
-    <hgroup class="auto-fadein">
-      <h2>What is a great accessible <br><br>experience?</h2>
-    </hgroup>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>ChromeVox</h2>
-      <h3>Screen Reader for Developers</h3>
-    </hgroup>
-    <article>
-      <ul class="build">
-        <li>Actual Screen Readers
-        	<ul>
-				<li>JAWS</li>
-				<li>NVDA</li>
-				<li>VoiceOver</li>
-			</ul>
-        </li>
-        <li>Development tool</li>
-      </ul>
-    </article>
-  </slide>
-  
-  <slide>
-      <hgroup>
-        <h2>Accessibility for the static web</h2>
-      </hgroup>
-	  <article>
-          <style>
-            input {
-              margin-left: 0.5em;
-              font-size: 100%;
-            }
-            select {
-              margin-left: 0.5em;
-              font-size: 100%;
-              vertical-align: middle;
-            }
-          </style>
-		  <p>This is an example of a poorly accessible page from the 90s:</p>
-          <form style="border: 1px solid #696969; padding: 1em; margin-top: 1em;">
-
-            <p>
-              Enter your name:
-              <input type="text" id="username_bad">
-            </p>
-
-            <p>
-              Choose your favorite color:
-              <select id="colorchoice_bad">
-                <option selected="">Red</option>
-                <option>Orange</option>
-                <option>Yellow</option>
-                <option>Green</option>
-                <option>Blue</option>
-                <option>Purple</option>
-                <option>Brown</option>
-                <option>Black</option>
-                <option>Gray</option>
-                <option>White</option>
-              </select>
-            </p>
-          
-            <p>
-              <input type="submit" style="width: 10em;">
-            </p>
-
-            <p>Having trouble?
-               Click <a href="http://www.google.com/">here</a> for help
-            </p>
-
-          </form>
-	  </article>
-  </slide>
-
-  <slide>
-      <hgroup>
-        <h2>Accessibility for the static web</h2>
-      </hgroup>
-	  <article>
-          <style>
-            input {
-              margin-left: 0.5em;
-              font-size: 100%;
-            }
-            select {
-              margin-left: 0.5em;
-              font-size: 100%;
-              vertical-align: middle;
-            }
-          </style>
-		  <p>This is an example of a perfectly accessible page from the 90s:</p>
-          <form style="border: 1px solid #696969; padding: 1em; margin-top: 1em;">
-
-            <p>
-              <label for="username">Enter your name:</label>
-              <input type="text" id="username">
-            </p>
-
-            <p>
-              <label for="colorchoice">Choose your favorite color:</label>
-              <select id="colorchoice">
-                <option selected="">Red</option>
-                <option>Orange</option>
-                <option>Yellow</option>
-                <option>Green</option>
-                <option>Blue</option>
-                <option>Purple</option>
-                <option>Brown</option>
-                <option>Black</option>
-                <option>Gray</option>
-                <option>White</option>
-              </select>
-            </p>
-          
-            <p>
-              <input type="submit" style="width: 10em;">
-            </p>
-
-            <p>Having trouble?
-               <a href="http://www.google.com/">Click here for help</a>
-            </p>
-
-          </form>
-	  </article>
-  </slide>
-  
-  
-  <slide>
-    <hgroup>
-      <h2>HTML5: A bad accessible experience</h2>
-    </hgroup>
-    <article>
-      <iframe data-src="lunch_notax.html"></iframe>
-    </article>
-  </slide>
-  
-  <slide>
-    <hgroup>
-      <h2>What Went Wrong?</h2>
-    </hgroup>
-    <article>
-		<ul>
-			<li>Poor Focus Management</li>
-			<li>No Keyboard Commands</li>
-			<li>Unusable Custom Controls</li>
-			<li>The user doesn't know when things change on the page</li>
-		</ul>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>HTML5: A good accessible experience</h2>
-    </hgroup>
-    <article>
-      <iframe data-src="lunch_ax.html"></iframe>
     </article>
   </slide>
   
@@ -492,11 +518,12 @@ Send
 
 	<div class="livecontent-embed-container" style="">
 		<div id="custombutton_embed" class="livecontent-embed" style=""></div>
-		<button class="refresh" onclick="return refreshLiveCoding(event, 'custombutton')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+		<button class="refresh custombuttonrefresh" style="float:">Refresh</button>
 	</div>
 	<script>
-	require(['live-content'], function(lc){
-		lc.manageLiveCoding('custombutton');		
+	require(['live-content', 'jquery.min'], function(lc){
+		lc.manageLiveCoding('custombutton');	
+		$('button.custombuttonrefresh').bind('click', function(e){ lc.refreshLiveCoding(e, 'custombutton'); });
 	});
 	</script>
 
@@ -608,7 +635,6 @@ function toggle() {
 	<script>
 	require(['live-content'], function(lc){
 		lc.manageLiveCoding('star');
-		//initstars();
 	});
 	</script>
 	<script>
@@ -741,18 +767,127 @@ function confirm() {
 		      });
 	});
 	</script>
-	<script>
-
-	</script>
 
 		</article>
 	</slide>
+	
+    <slide>
+      <hgroup>
+        <h2>HTML5: A good accessible experience</h2>
+      </hgroup>
+      <article>
+        <iframe data-src="lunch_ax.html"></iframe>
+      </article>
+    </slide>
+	
+	<slide>
+		<hgroup>
+			<h2>Compatibility Note</h2>
+		</hgroup>
+		<article>
+			<p>These examples were all designed to work with the latest versions of many browsers and assistive technology.</p>
+			<ul>
+				<li>Browsers<br>
+					Chrome 12+, Firefox 3.6+, IE 8+, Safari 5+</li>
+				<li>Screen Readers<br>
+					JAWS, ZoomText, NVDA, VoiceOver</li>
+        </ul>
+      </article>
+    </slide>
+	
+    <slide class="segue dark nobackground">
+      <hgroup class="auto-fadein">
+        <h2>Auditing</h2>
+      </hgroup>
+    </slide>
 
+	<slide>
+		<hgroup>
+			<h2>Static Auditing</h2>
+		</hgroup>
+		<article>
+			<p>Wave</p>
+			<ul>
+				<li>Accepted Standard</li>
+				<li>Tests 508 and WCAG 2.0</li>
+				<li>Can't help with internal sites</li>
+			</ul>
+		</article>
+	</slide>
+
+	<slide>
+		<hgroup>
+			<h2>Integrated Auditing</h2>
+		</hgroup>
+		<article>
+			<ul class="build">
+				<li>Integrated Tools
+					<ul>
+						<li>Wave Toolbar (Firefox)</li>
+						<li>Chrome Accessibility Extension</li>
+					</ul>
+				</li>
+				<li>These will make you feel better</li>
+			</ul>
+		</article>
+	</slide>
+	
+	<slide>
+		<hgroup>
+			<h2>Accessibility Working Group</h2>
+			<h3>Coming soon...</h3>
+		</hgroup>
+		<article>
+			<ul class="build">
+				<li>What you can expect:
+					<ul>
+						<li>Recommendations</li>
+						<li>Audit preferences</li>
+					</ul>
+				</li>
+				<li>What you can hope for:
+					<ul>
+						<li>An official channel for getting help
+							<ul>
+								<li>Auditing your application</li>
+								<li>Fixing accessibility bugs</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</article>
+	</slide>
+	
+	<slide>
+		<hgroup>
+			<h2>What Good is this Brown Bag?</h2>
+		</hgroup>
+		<article>
+			<ul class="build">
+				<li>Not expecting you to get anything out of this...
+					<ul class="build">
+						<li>Standard tags</li>
+						<li>Descriptions</li>
+						<li>Focus</li>
+						<li>Just "unplug" your mouse</li>
+					</ul>
+				</li>
+				<li>Communicate
+					<ul class="build">
+						<li>Work together</li>
+						<li>I'm here</li>
+					</ul>
+				</li>
+			</ul>
+		</article>
+	</slide>
+	
   <slide class="thank-you-slide segue nobackground">
-    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar right"><img src="images/harvard-logo.png"></aside>
     <article class="flexbox vleft auto-fadein">
       <h2>&lt;Thank You!&gt;</h2>
-      <p>Important contact information goes here.</p>
+      <p>These customized slides are available on my github.</p>
     </article>
     <p class="auto-fadein" data-config-contact>
       <!-- populated from slide_config.json -->
