@@ -294,6 +294,19 @@ URL: https://code.google.com/p/io-2012-slides
     </article>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h2>What is disabled?</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Visual imparements</li>
+        <li>Motor and mobility imparements</li>
+        <li>Hearing imparements</li>
+      </ul>
+    </article>
+  </slide>
+
   <slide class="segue dark nobackground">
     <hgroup class="auto-fadein">
       <h2>Legal Responsibility</h2>
@@ -309,21 +322,15 @@ URL: https://code.google.com/p/io-2012-slides
 		<ul class="build">
 			<li><p class="build">Who does this apply to?</p>
 				<ul class="build">
-					<li>Student Facing applications?</li>
-					<li>Everyone?</li>
+					<li>Student-facing applications?</li>
+					<li>Everyone.</li>
 				</ul>
 			</li>
 			<li><p>Do we care?</p>
 				<ul class="build">
-					<li>Of course care</li>
-					<li>Care is a poor choice of words...</li>
-					<li>Priority?</li>
-				</ul>
-			</li>
-			<li><p>An opportunity?</p>
-				<ul class="build">
-					<li>Good practices</li>
-					<li>Communication</li>
+					<li>Of course we care</li>
+					<li>Realistic about priority</li>
+					<li></li>
 				</ul>
 			</li>
 		</ul>
@@ -557,7 +564,7 @@ function toggle() {
 
 	<div class="livecontent-embed-container" style="">
 		<div id="customtoggle_embed" class="livecontent-embed" style=""></div>
-		<button class="refresh" onclick="return refreshLiveCoding(event, 'customtoggle')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+		<button class="refresh" onclick="return refreshLiveCoding(event, 'customtoggle')" style="float:">Refresh</button>
 	</div>
 	<script>
 	require(['live-content'], function(lc){
@@ -672,7 +679,7 @@ function toggle() {
       caption.text(starNames[stars]);
       var stars_elem = $('#stars');
       stars_elem.attr('aria-valuenow', stars);
-      stars_elem.attr('aria-valuetext', starNames[stars]);
+      //stars_elem.attr('aria-valuetext', starNames[stars]);
     }
 
     function starkey(event) {
@@ -786,13 +793,25 @@ function confirm() {
 			<h2>Compatibility Note</h2>
 		</hgroup>
 		<article>
-			<p>These examples were all designed to work with the latest versions of many browsers and assistive technology.</p>
-			<ul>
-				<li>Browsers<br>
-					Chrome 12+, Firefox 3.6+, IE 8+, Safari 5+</li>
-				<li>Screen Readers<br>
-					JAWS, ZoomText, NVDA, VoiceOver</li>
-        </ul>
+			<p>Compatability is a mess!</p>
+			<ul class="build">
+				<li>JAWS (and NVDA)
+					<ul>
+						<li>Firefox</li>
+						<li>IE</li>
+					</ul>
+				</li>
+				<li>VoiceOver
+					<ul>
+						<li>Safari</li>
+					</ul>
+				</li>
+				<li>ChromeVox
+					<ul>
+						<li>Chrome</li>
+					</ul>
+				</li>
+        	</ul>
       </article>
     </slide>
 	
@@ -812,10 +831,6 @@ function confirm() {
 				<li>Accepted Standard</li>
 				<li>Tests 508 and WCAG 2.0</li>
 				<li>Can't help with internal sites</li>
-			</ul>
-			<p>Other 3rd Party Tools</p>
-			<ul>
-				<li>Dated</li>
 			</ul>
 		</article>
 	</slide>
@@ -871,7 +886,7 @@ function confirm() {
 		</hgroup>
 		<article>
 			<ul class="build">
-				<li>Not expecting you to get anything out of this...
+				<li>I'm not expecting you to get anything out of this...
 					<ul class="build">
 						<li>Standard tags</li>
 						<li>Descriptions</li>
@@ -880,9 +895,46 @@ function confirm() {
 					</ul>
 				</li>
 				<li>Communicate
-					<ul class="build">
+					<ul>
 						<li>Work together</li>
-						<li>I'm here</li>
+					</ul>
+				</li>
+			</ul>
+		</article>
+	</slide>
+
+	<slide>
+		<hgroup>
+			<h2>Side Note</h2>
+			<h3>There was more here than just accessibility</h3>
+		</hgroup>
+		<article>
+			<ul class="build">
+				<li>User Experience
+					<ul class="build">
+						<li>DOM order
+							<ul>
+								<li>Maintainability</li>
+								<li>Standards</li>
+							</ul>
+						</li>
+						<li>Keyboard Controls
+							<ul>
+								<li>Power Users</li>
+								<li>Lazy Users</li>
+							</ul>
+						</li>
+						<li>Focus
+							<ul>
+								<li>Power Users</li>
+								<li>Pleasant experience</li>
+							</ul>
+						</li>
+						<li>Labels
+							<ul>
+								<li>Increased clickable area</li>
+							</ul>
+						</li>
 					</ul>
 				</li>
 			</ul>
@@ -893,7 +945,7 @@ function confirm() {
     <aside class="gdbar right"><img src="images/harvard-logo.png"></aside>
     <article class="flexbox vleft auto-fadein">
       <h2>&lt;Thank You!&gt;</h2>
-      <p>These customized slides are available on my github.</p>
+      <p>A special thank you to: Curtis Wilcox, Ashley Cwikla, Michael Hilborn, Artie Barrett, Shannon Rice, Roderick Morales, and Mildene Bradley</p>
     </article>
     <p class="auto-fadein" data-config-contact>
       <!-- populated from slide_config.json -->
