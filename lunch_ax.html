@@ -56,7 +56,7 @@
           (document.body.offsetHeight + 30) + 'px';
       document.getElementById('shade').style.display = 'block';
       document.getElementById('dialog').style.display = 'block';
-      document.getElementById('stars').focus();
+      document.getElementById('dialog').focus();
 
       dialogFocus = document.activeElement;
       dialogFocusListener = function(e) {
@@ -139,8 +139,11 @@
       caption.innerText = starNames[stars];
       var stars_elem = document.getElementById('stars');
       stars_elem.setAttribute('aria-valuenow', stars);
-      //stars_elem.setAttribute('aria-valuetext', starNames[stars]);
-    }
+	  //console.log(starNames[stars]);
+      // chromevox currently has a bug with valuetext...
+	  //stars_elem.setAttribute('aria-valuetext', "'"+starNames[stars]+"'");
+      
+	}
 
     function starkey(event) {
       if (event.keyCode == 37 && current_stars > 0) {
@@ -193,12 +196,12 @@
 
 <div class="content">
 
-<p>Please rate this lunch!</p>
+<p><label for="stars">Please rate this lunch!</label></p>
 
 <div id="shade" style="display:none"></div>
 <div class="dialog_container">
 <div class="dialog" id="dialog" role="dialog" aria-label="Rating Dialog"
-     style="display:none">
+     style="display:none" tabindex="-1">
   <div class="lunch_image_dialog" id="dialog_icon"></div>
   <h2 id="dialog_title">Dialog Title</h2>
   <p>Please rate this lunch!</p>
@@ -227,7 +230,7 @@
 		<div class="lunch_image" style="background-image:url('images/pinocchio_small.gif')"></div>
 		<div class="lunch_link">
 			<a role="button" href="javascript:rate('pinocchio')">Pinocchio's</a><br>
-			<span class="lunch_count">7,965 ratings</span>
+			<span class="lunch_count">7,975 ratings</span>
 		</div>
 
 	<li class="lunch_result">
