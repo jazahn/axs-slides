@@ -695,13 +695,40 @@ Toggle&lt;/div&gt;</pre>
   &lt;/span&gt;
 &lt;/div&gt;</pre>
 
+<pre id="star_src2" class="prettyprint livecontent-src" data-lang="html" contenteditable="true" style="display:none">
+&lt;p&gt;
+  Rate from 1 to 5 stars:
+&lt;/p&gt;
+&lt;div id="stars" class="star_rating"
+tabindex="0"
+role="slider"
+aria-valuemin="0"
+aria-valuemax="5"
+aria-valuenow="3"
+aria-valuetext="3 stars"&gt;
+  &lt;span class="star_cancel"&gt;&lt;/span&gt;
+  &lt;span class="star_full"&gt;&lt;/span&gt;
+  &lt;span class="star_full"&gt;&lt;/span&gt;
+  &lt;span class="star_full"&gt;&lt;/span&gt;
+  &lt;span class="star_empty"&gt;&lt;/span&gt;
+  &lt;span class="star_empty"&gt;&lt;/span&gt;
+  &lt;span class="star_caption"&gt;
+    3 stars
+  &lt;/span&gt;
+&lt;/div&gt;</pre>
+
 	<div class="livecontent-embed-container" style="">
 		<div id="star_embed" class="livecontent-embed" style=""></div>
 		<button class="refresh" onclick="return refreshLiveCoding(event, 'star')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+		<button id="star_do" class="" style="float:">Toggle</button>
 	</div>
 	<script>
 	require(['live-content'], function(lc){
 		lc.manageLiveCoding('star');
+		$('#star_do').bind('click', function(e) { 
+			$('#star_src').toggle();
+			$('#star_src2').toggle();
+		});
 	});
 	</script>
 	<script>
