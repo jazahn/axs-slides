@@ -635,13 +635,30 @@ Toggle&lt;/div&gt;</pre>
   Status goes here.
 &lt;/div&gt;</pre>
 
+<pre id="status_src2" class="prettyprint livecontent-src" data-lang="html" contenteditable="true" style="display:none">
+&lt;p&gt;
+  Click to begin calculation:
+&lt;/p&gt;
+&lt;button onclick="calculate()"&gt;
+  Calculate
+&lt;/button&gt;
+
+&lt;div id="status" aria-live="polite"&gt;
+  Status goes here.
+&lt;/div&gt;</pre>
+
 	<div class="livecontent-embed-container" style="">
 		<div id="status_embed" class="livecontent-embed" style=""></div>
 		<button class="refresh" onclick="return refreshLiveCoding(event, 'status')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+		<button id="status_do" class="" style="float:">Toggle</button>
 	</div>
 	<script>
 	require(['live-content'], function(lc){
 		lc.manageLiveCoding('status');
+		$('#status_do').bind('click', function(e) { 
+			$('#status_src').toggle();
+			$('#status_src2').toggle();
+		});
 	});
 	</script>
 	<script>
