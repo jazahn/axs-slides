@@ -827,13 +827,37 @@ function confirm() {
   &lt;button id="cancel"&gt;Cancel&lt;/button&gt;
 &lt;/div&gt;</pre>
 
+<pre id="popup_src2" class="prettyprint livecontent-src" data-lang="html" contenteditable="true" style="display:none">
+&lt;script&gt;
+function confirm() {
+  $('#modal_dialog').css('display', 'block');
+  $('#modal_dialog').focus();
+}
+&lt;/script&gt;
+
+&lt;button onclick="confirm()"&gt;
+  Finish Brown Bag
+&lt;/button&gt;
+
+&lt;div id="modal_dialog" class="dialog"
+  tabindex="-1" role="dialog"&gt;
+  &lt;p&gt;Are you sure you don't want to hear more?&lt;/p&gt;
+  &lt;button id="ok"&gt;End it&lt;/button&gt;
+  &lt;button id="cancel"&gt;Cancel&lt;/button&gt;
+&lt;/div&gt;</pre>
+
 	<div class="livecontent-embed-container" style="">
 		<div id="popup_embed" class="livecontent-embed" style=""></div>
 		<button class="refresh" onclick="return refreshLiveCoding(event, 'popup')" onkeydown="return onKeyDown(event)" style="float:">Refresh</button>
+		<button id="popup_do" class="" style="float:">Toggle</button>
 	</div>
 	<script>
 	require(['live-content', 'jquery.min'], function(lc){
 		lc.manageLiveCoding('popup');
+		$('#popup_do').bind('click', function(e) { 
+			$('#popup_src').toggle();
+			$('#popup_src2').toggle();
+		});
 		var lastFocus = $('#ok');
 		  var listener = function(e) {
 		    window.setTimeout(function() {
