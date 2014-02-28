@@ -525,14 +525,31 @@ onclick="alert('sent!')"&gt;
 Send
 &lt;/div&gt;</pre>
 
+<pre id="custombutton_src2" class="prettyprint livecontent-src" data-lang="html" contenteditable="true" style="display:none">
+&lt;p&gt;
+Click on this button:
+&lt;/p&gt;
+&lt;div class="custombutton" 
+tabindex="0" role="button" 
+onkeypress="onclick()"
+onclick="alert('sent!')"&gt;
+Send
+&lt;/div&gt;</pre>
+
+
 	<div class="livecontent-embed-container" style="">
 		<div id="custombutton_embed" class="livecontent-embed" style=""></div>
 		<button class="refresh custombuttonrefresh" style="float:">Refresh</button>
+		<button id="custombutton_do" class="" style="float:">Toggle</button>
 	</div>
 	<script>
 	require(['live-content', 'jquery.min'], function(lc){
 		lc.manageLiveCoding('custombutton');	
 		$('button.custombuttonrefresh').bind('click', function(e){ lc.refreshLiveCoding(e, 'custombutton'); });
+		$('#custombutton_do').bind('click', function(e) { 
+			$('#custombutton_src').toggle();
+			$('#custombutton_src2').toggle();
+		});
 	});
 	</script>
 
@@ -563,13 +580,37 @@ function toggle() {
   Toggle
 &lt;/div&gt;</pre>
 
+<pre id="customtoggle_src2" class="prettyprint livecontent-src" data-lang="html" contenteditable="true" style="display:none">
+&lt;script&gt;
+function toggle() {
+  var b = $('#tb');
+  if (b.hasClass('toggled')) {
+    b.removeClass('toggled');
+    b.attr('aria-pressed', false);
+  } else {
+    b.addClass('toggled');
+    b.attr('aria-pressed', true);
+  }
+}
+&lt;/script&gt;
+&lt;div id="tb" class="togglebutton"
+  tabindex="0" role="button"
+  onkeypress="onclick()"
+  onclick="toggle()"&gt;
+Toggle&lt;/div&gt;</pre>
+
 	<div class="livecontent-embed-container" style="">
 		<div id="customtoggle_embed" class="livecontent-embed" style=""></div>
 		<button class="refresh" onclick="return refreshLiveCoding(event, 'customtoggle')" style="float:">Refresh</button>
+		<button id="customtoggle_do" class="" style="float:">Toggle</button>
 	</div>
 	<script>
 	require(['live-content'], function(lc){
 		lc.manageLiveCoding('customtoggle');		
+		$('#customtoggle_do').bind('click', function(e) { 
+			$('#customtoggle_src').toggle();
+			$('#customtoggle_src2').toggle();
+		});
 	});
 	</script>
 
